@@ -1,0 +1,9 @@
+{
+  "name": "stm32rct6-cortexm-tasks",
+  "private": true,
+  "scripts": {
+    "task-configure-debug": "C:/Users/28970/Toolchain/cmake-4.4.2-windows-x86_64/bin/cmake.exe --fresh --preset debug",
+    "task-build-debug": "C:/Users/28970/Toolchain/cmake-4.4.2-windows-x86_64/bin/cmake.exe --build --preset debug",
+    "task-flash-debug": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\build-and-flash.ps1"
+  }
+}

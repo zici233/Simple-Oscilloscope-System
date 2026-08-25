@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug STM32F103RCT6 (OpenOCD)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/debug/STM32RCT6.elf",
+      "gdbPath": "C:/Users/28970/Toolchain/ArmGNU/bin/arm-none-eabi-gdb.exe",
+      "objdumpPath": "C:/Users/28970/Toolchain/ArmGNU/bin/arm-none-eabi-objdump.exe",
+      "configFiles": ["${workspaceFolder}/openocd-stm32f1x.cfg"],
+      "runToEntryPoint": "main",
+      "preLaunchTask": "CMake: Build Debug"
+    }
+  ]
+}

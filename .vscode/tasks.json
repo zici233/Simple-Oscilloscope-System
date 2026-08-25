@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake: Configure Debug",
+      "type": "shell",
+      "command": "C:/Users/28970/Toolchain/cmake-4.4.2-windows-x86_64/bin/cmake.exe",
+      "args": ["--fresh", "--preset", "debug"],
+      "problemMatcher": "$gcc",
+      "group": "build"
+    },
+    {
+      "label": "CMake: Build Debug",
+      "type": "shell",
+      "command": "C:/Users/28970/Toolchain/cmake-4.4.2-windows-x86_64/bin/cmake.exe",
+      "args": ["--build", "--preset", "debug"],
+      "dependsOn": "CMake: Configure Debug",
+      "dependsOrder": "sequence",
+      "problemMatcher": "$gcc",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "STM32: Flash Debug",
+      "type": "shell",
+      "command": "powershell.exe",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/build-and-flash.ps1"],
+      "dependsOn": "CMake: Build Debug",
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    }
+  ]
+}
