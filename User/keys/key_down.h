@@ -3,7 +3,7 @@
 
 #include "main.h"
 #include "key.h"
-void Keydown_Init(KeyHandle_TypeDef* Handle);
-void Keydown_Scan(KeyHandle_TypeDef* Handle);
+void Keydown_Init(void);
+void Keydown_Scan(void);
 
 #endif /* KEYDOWN_H */

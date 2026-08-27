@@ -4,22 +4,25 @@
 #include "task.h"
 #include "key.h"
 #include "key1.h"
+static KeyHandle_TypeDef hkey1;
+static void Key1_ClickedCallback(void);
 
-void Key1_Init(KeyHandle_TypeDef* Handle)
+
+void Key1_Init(void)
 {
-    Handle->previous = GPIO_PIN_SET;
-    Handle->current  = GPIO_PIN_SET;
+    hkey1.GPIO_Port = KEY1_GPIO_Port;
+    hkey1.GPIO_Pin  = KEY1_Pin;
+    hkey1.ClickedCallback = Key1_ClickedCallback;
+    Key_Init(&hkey1);
+    
 }
 
-void Key1_Scan(KeyHandle_TypeDef* Handle)
+void Key1_Scan(void)
 {
-    Handle->current = HAL_GPIO_ReadPin(Handle->GPIO_Port, Handle->GPIO_Pin);
-
-    if (Handle->previous == GPIO_PIN_SET && Handle->current == GPIO_PIN_RESET)
-    {
-        Handle->ClickedCallback();   /* 调用点击回调函数 */
-        HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin); /* 切换LED状态 */
-    }
-
-    Handle->previous = Handle->current;
+    Key_Scan(&hkey1);
+}
+static void Key1_ClickedCallback(void)
+{
+	extern UART_HandleTypeDef huart1;
+	HAL_UART_Transmit(&huart1, (uint8_t*)"Key1 Clicked!\r\n", 16, 1000);
 }

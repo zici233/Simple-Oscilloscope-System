@@ -209,8 +209,10 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, LED3_Pin|LED1_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : KEY_UP_Pin KEY_DOWN_Pin KEY1_Pin */
-  GPIO_InitStruct.Pin = KEY_UP_Pin|KEY_DOWN_Pin|KEY1_Pin;
+  /*Configure GPIO pins : KEY_UP_Pin KEY_DOWN_Pin KEY3_Pin KEY4_Pin
+                           KEY1_Pin */
+  GPIO_InitStruct.Pin = KEY_UP_Pin|KEY_DOWN_Pin|KEY3_Pin|KEY4_Pin
+                          |KEY1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
@@ -221,6 +223,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : KEY2_Pin */
+  GPIO_InitStruct.Pin = KEY2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(KEY2_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

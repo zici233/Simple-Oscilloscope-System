@@ -1,7 +1,6 @@
 #ifndef KEY_H
 #define KEY_H
 #include "main.h"
-
 typedef struct
 {
   GPIO_PinState previous ;

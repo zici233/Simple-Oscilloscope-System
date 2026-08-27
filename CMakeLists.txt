@@ -40,6 +40,11 @@ add_executable(STM32RCT6.elf
     User/keys/key_down.c
     User/keys/key_up.c
     User/keys/key1.c
+    User/keys/key2.c
+    User/keys/key3.c
+    User/keys/key4.c
+
+
 )
 
 target_compile_features(STM32RCT6.elf PRIVATE c_std_11)
