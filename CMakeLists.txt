@@ -35,14 +35,15 @@ add_executable(STM32RCT6.elf
     Freertos/Src/stream_buffer.c
     Freertos/Src/tasks.c
     Freertos/Src/timers.c
-    User/task/key_task.c
-    Drivers/key.c
-    User/keys/key_down.c
-    User/keys/key_up.c
-    User/keys/key1.c
-    User/keys/key2.c
-    User/keys/key3.c
-    User/keys/key4.c
+    App/app.c
+    App/key_task.c
+    App/buzzer_task.c
+    Bsp/key.c
+    Module/key/key1.c
+    Module/key/key2.c
+    Module/key/key3.c
+    Module/key/key4.c
+    Module/buzzer/buzzer.c
 
 
 )
@@ -61,9 +62,10 @@ target_include_directories(STM32RCT6.elf PRIVATE
     Drivers/CMSIS/Device/ST/STM32F1xx/Include
     Drivers/CMSIS/Include
     Freertos/Inc
-    User/task
-    Drivers
-    User/keys
+    App
+    Module/key
+    Module/buzzer
+    Bsp
 )
 
 target_compile_options(STM32RCT6.elf PRIVATE

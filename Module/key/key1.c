@@ -4,9 +4,10 @@
 #include "task.h"
 #include "key.h"
 #include "key1.h"
+#include "buzzer.h"
+#include "semphr.h"
 static KeyHandle_TypeDef hkey1;
 static void Key1_ClickedCallback(void);
-
 
 void Key1_Init(void)
 {
@@ -23,6 +24,7 @@ void Key1_Scan(void)
 }
 static void Key1_ClickedCallback(void)
 {
-	extern UART_HandleTypeDef huart1;
-	HAL_UART_Transmit(&huart1, (uint8_t*)"Key1 Clicked!\r\n", 16, 1000);
+	Buzzer_Beep();
+    // extern UART_HandleTypeDef huart1;
+	// HAL_UART_Transmit(&huart1, (uint8_t*)"Key1 Clicked!\r\n", 16, 1000);
 }

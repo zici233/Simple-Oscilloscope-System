@@ -23,7 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "FreeRTOS.h"
 #include "task.h"
-#include "key_task.h"
+#include "app.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,9 +102,9 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-xTaskCreate(Key_Task,"Key",256,NULL,3,NULL);
-vTaskStartScheduler();
-  /* USER CODE END 2 */
+  App_Init();               /* 应用层入口：模块初始化 + 任务创建 */
+  vTaskStartScheduler();
+  /* USER CODE END 2 */ 
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -207,7 +207,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, LED3_Pin|LED1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, LED3_Pin|LED1_Pin|BUZZER_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : KEY_UP_Pin KEY_DOWN_Pin KEY3_Pin KEY4_Pin
                            KEY1_Pin */
@@ -217,8 +217,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LED3_Pin LED1_Pin */
-  GPIO_InitStruct.Pin = LED3_Pin|LED1_Pin;
+  /*Configure GPIO pins : LED3_Pin LED1_Pin BUZZER_Pin */
+  GPIO_InitStruct.Pin = LED3_Pin|LED1_Pin|BUZZER_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
